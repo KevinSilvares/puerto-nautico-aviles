@@ -18,7 +18,17 @@ public class Alquiler {
 	
 	public double getPrecio() {
 		double precio;
-		precio = (numeroDias * (barco.getEslora() * 10)) + (barco.getCoeficienteBernua() * 300);
+		precio = -1;
+		if(barco instanceof Velero) {
+			precio = (numeroDias * (barco.getEslora() * 10)) + (((Velero)barco).getNumeroMastiles() * 300);
+		}
+		else if(barco instanceof Yate) {
+			precio = (numeroDias * (barco.getEslora() * 10)) + ((((Yate)barco).getPotencia() + ((Yate)barco).getNumCamarotes()) * 300);
+		}
+		else if(barco instanceof EmbarcacionAMotor){
+			precio = (numeroDias * (barco.getEslora() * 10)) + (((EmbarcacionAMotor)barco).getPotencia() * 300);
+		}
+		
 		return precio;
 	}
 	
